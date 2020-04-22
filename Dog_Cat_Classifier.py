@@ -13,6 +13,7 @@ from keras.models import Sequential
 from keras.layers import Convolution2D
 from keras.layers import MaxPooling2D
 from keras.layers import Flatten
+from keras.layers import Conv2D
 from keras.layers import Dense
 from keras.optimizers import SGD 
 from keras.preprocessing.image import ImageDataGenerator
@@ -120,7 +121,7 @@ model.add(MaxPooling2D((2, 2)))
 model.add(Dense(128, activation='relu', kernel_initializer='he_uniform'))
 model = model.output
 model = GlobalAveragePooling2D()(model)
-predictions = Dense(len(labels), activation="sigmoid")(models)
+predictions = Dense(len(labels), activation="sigmoid")(model)
 
 opt = SGD(lr=0.001, momentum=0.9)
 model = Model(inputs=model.input, outputs=predictions)
